@@ -1,0 +1,351 @@
+#===============================================================================#
+#                                                                               #
+#                          无尽跑酷 Infinite Parkour                              #
+#                          Folia 1.21.x 适配版                                   #
+#                                                                               #
+#                           配置文件 config.yml                                   #
+#                         默认语言：简体中文                                      #
+#                                                                               #
+#===============================================================================#
+
+# 配置文件版本（请勿修改）
+_config_version: 2
+
+# -= 调试模式 =-
+# 是否启用调试日志输出
+debug: false
+
+# -= 允许加入 =-
+# 玩家是否可以加入跑酷。
+# 设为 false 时，此服务器仅读取排行榜数据（可用于跨服排行）
+joining: true
+
+# -= 代理服选项 (BungeeCord/Velocity) =-
+bungeecord:
+
+  # -= 启用代理模式 =-
+  # 开启后玩家加入服务器将自动进入跑酷。
+  # 即使没有 BungeeCord 也可启用，将本服变为纯跑酷服。
+  enabled: false
+
+  # -= 代理返回服务器 =-
+  # 玩家退出跑酷后返回的服务器名称
+  return_server: 'Lobby'
+
+  # -= 启用返回传送 =-
+  # 玩家退出时是否传送到指定位置
+  # true = 传送到指定位置, false = 回到加入前的位置
+  go-back-enabled: false
+
+  # -= 返回传送点 =-
+  # 仅在代理模式关闭且 go-back-enabled 为 true 时生效
+  # 格式: '(x,y,z,世界名)'
+  go-back: '(0,100,0,world)'
+
+  # -= 返回传送朝向 =-
+  # 设置返回传送点的 pitch 和 yaw
+  # 第一个参数为 pitch, 第二个为 yaw
+  go-back-axes: '0,0'
+
+# -= 存储更新间隔 =-
+# 磁盘/数据库存储更新的间隔（秒）
+# 间隔越短数据越安全，但会增加磁盘/数据库读写压力
+# （修改后需重启，默认 300 秒）
+storage-update-interval: 300
+
+# -= MySQL 数据库选项 =-
+sql:
+
+  # -= 启用 MySQL =-
+  # 使用数据库可在多服务器间同步玩家数据
+  # true = 存入数据库, false = 本地存储
+  enabled: false
+
+  # -= MySQL 连接设置 =-
+  url: 'localhost'
+  port: 3306
+  username: 'efnilite'
+  password: 'super secret password'
+  database: 'ip'
+
+  # -= MySQL 表前缀 =-
+  # 给表名添加前缀
+  # 例如 'ip-' 会将表名变为 'ip-players'
+  prefix: ''
+
+# -= 世界选项 =-
+world:
+
+  # -= 跑酷世界名称 =-
+  # 跑酷游戏所在的世界名
+  # Folia 注意：如无法自动创建，插件会自动回退到已有世界
+  name: 'witp'
+
+  # -= 重载时删除世界 =-
+  # 服务器重载/重启时删除跑酷世界，防止幽灵方块
+  # 使用自定义地图时请关闭此选项
+  delete-on-reload: true
+
+  # -= 回退世界 =-
+  # 玩家意外进入跑酷世界（未加入跑酷）时传送回的世界
+  # Folia 注意：若跑酷世界创建失败，也会使用此世界作为跑酷场地
+  fall-back: 'world'
+
+# -= 通用选项 =-
+options:
+
+  # -= 引导方块数量选项 =-
+  leads:
+
+    # -= 可选引导数量 =-
+    # 玩家在设置菜单中可选择的引导方块数量
+    # 必须在 1 到 64 之间
+    amount:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+
+  # -= 时间选项 =-
+  time:
+
+    # -= 时间格式 =-
+    # 可选值:
+    # 24 - 24小时制 (00:00, 12:00, 23:59)
+    # 12 - 12小时制 (12:00 AM, 12:00 PM, 11:59 PM)
+    format: 24
+
+    # -= 计时格式 =-
+    # H = 小时, m = 分钟, s = 秒, S = 毫秒
+    score-format: "mm:ss:SSS"
+
+  # -= 背包管理 =-
+  # 是否启用背包处理系统
+  # true = 加入跑酷时保存并清空背包，退出时恢复
+  # false = 玩家保留背包进入跑酷
+  inventory-handling: true
+
+  # -= 背包保存 =-
+  # 将玩家背包保存到 inventories/ 文件夹
+  # 强烈建议开启！关闭后服务器崩溃可能导致玩家背包丢失！
+  # 使用 /ip recoverinventory 可恢复已保存的玩家背包
+  inventory-saving: true
+
+  # -= 替代背包保存命令 =-
+  # 如果不信任本插件的背包保存，可指定其他插件命令来保存
+  # 例如: /inventory save %player%
+  # 此命令由控制台执行
+  alt-inventory-saving-command: ''
+
+  # -= 禁用容器方块 =-
+  # 禁止玩家在跑酷中打开容器方块（箱子、熔炉等）
+  disable-inventory-blocks: false
+
+# -= 权限选项 =-
+# 权限节点说明: https://efnilite.dev/projects/ip/wiki
+permissions:
+
+  # -= 启用权限系统 =-
+  # true = 玩家需要权限才能加入/查看排行榜等
+  # false = 玩家可自由使用插件功能（管理员指令除外）
+  enabled: false
+
+  # -= 每个风格独立权限 =-
+  # 为每个方块风格分配独立权限
+  # 格式: ip.settings.styles.<风格名> 例如 ip.settings.styles.red
+  # 对有等级系统的服务器很有用
+  per-style: false
+
+# -= 专注模式 =-
+focus-mode:
+
+  # -= 启用专注模式 =-
+  # 开启后玩家在跑酷中无法使用其他指令
+  # 注意：由于 Minecraft 机制，可能无法拦截所有指令
+  enabled: false
+
+  # -= 指令白名单 =-
+  # 专注模式下仍然允许使用的指令
+  # 清空列表可禁用所有白名单指令
+  whitelist:
+    - 'ip'
+    - 'parkour'
+    - 'msg'
+    - 'r'
+    - 'w'
+    - 'whisper'
+    - 'reply'
+    - 'message'
+
+# -= 方块风格 =-
+styles:
+
+  # -= 风格列表 =-
+  # 可用的方块风格列表，可自行添加
+  # 修改后需重载或重启服务器
+  list:
+    red: [red_wool, red_stained_glass, red_concrete, red_terracotta]
+    blue: [blue_wool, blue_stained_glass, blue_concrete, blue_terracotta]
+    light blue: [light_blue_wool, light_blue_stained_glass, light_blue_concrete, light_blue_terracotta]
+    green: [green_wool, green_stained_glass, green_concrete, green_terracotta]
+    lime: [lime_wool, lime_stained_glass, lime_concrete, lime_terracotta]
+    cyan: [cyan_wool, cyan_stained_glass, cyan_concrete, cyan_terracotta]
+    purple: [purple_wool, purple_stained_glass, purple_concrete, purple_terracotta]
+    yellow: [yellow_wool, yellow_stained_glass, yellow_concrete, yellow_terracotta]
+    gray: [gray_wool, gray_stained_glass, gray_concrete, gray_terracotta]
+    end: [end_stone, end_stone_bricks, purpur_block, purpur_pillar]
+    nether: [netherrack, nether_bricks, red_nether_bricks, chiseled_nether_bricks, nether_wart_block, nether_gold_ore, netherite_block, basalt]
+    quartz: [smooth_quartz, chiseled_quartz_block, quartz_block, quartz_bricks, quartz_pillar]
+    ocean: [prismarine, prismarine_bricks, dark_prismarine, sea_lantern]
+    redstone: [observer, dispenser, redstone_block, piston, sticky_piston, redstone_lamp, target]
+    overworld: [grass_block, stone, cobblestone, oak_log]
+    ores: [diamond_ore, gold_ore, iron_ore, coal_ore, nether_gold_ore, lapis_ore, redstone_ore, emerald_ore, nether_quartz_ore]
+    wood: [oak_planks, spruce_planks, jungle_planks, acacia_planks, birch_planks, dark_oak_planks, oak_log, spruce_log, jungle_log, birch_log, acacia_log, dark_oak_log]
+    rainbow: [red_wool, blue_wool, orange_wool, magenta_wool, lime_wool, purple_wool, yellow_concrete, orange_concrete, lime_concrete, light_blue_concrete, yellow_stained_glass, white_stained_glass, magenta_stained_glass, light_blue_stained_glass]
+    glow: [glowstone, jack_o_lantern, beacon, sea_lantern, crying_obsidian, shroomlight]
+
+# -= 计分选项 =-
+scoring:
+
+  # -= 全部分数 =-
+  # 给玩家所有可能的分数
+  # 即使跳过了一个方块，也会给予该方块的分数
+  all-points: false
+
+  # -= 奖励使用总分 =-
+  # 间隔奖励是否使用本次跑酷的总分
+  # 总分在玩家掉落时不会重置
+  rewards-use-total-score: false
+
+# -= 粒子/音效选项 =-
+particles:
+
+  # -= 粒子形状 =-
+  # 生成方块时显示的粒子形状
+  # 可选: dot（点）, box（方框）, circle（圆圈）
+  particle-shape: 'box'
+
+  # -= 粒子类型 =-
+  # 生成方块时显示的粒子类型
+  # 可选类型: https://jd.papermc.io/paper/1.21/org/bukkit/Particle.html
+  particle-type: 'END_ROD'
+
+  # -= 音效类型 =-
+  # 生成方块时播放的音效
+  # 可选音效: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+  sound-type: 'BLOCK_NOTE_BLOCK_GUITAR'
+
+  # -= 音效音高 =-
+  sound-pitch: 3
+
+  # -= 音效音量 =-
+  sound-volume: 2
+
+# -= 全息投影排行榜 =-
+# 支持 HolographicDisplays / DecentHolograms / FancyHolograms
+holograms:
+  decentholograms:
+    enabled: false
+    # 排行榜全息投影列表 — 在指定位置创建自动刷新的排行榜
+    # leaderboards:
+    #   - location: "world,0,100,0"
+    #     mode: default
+    #     lines: 10
+  fancyholograms:
+    enabled: false
+    # leaderboards:
+    #   - location: "world,0,100,0"
+    #     mode: default
+    #     lines: 10
+
+# -= 默认值 =-
+# 所有玩家选项的默认值
+default-values:
+  main:
+    enabled: true
+
+  quit:
+    enabled: true
+
+  play:
+    enabled: true
+
+    single:
+      enabled: true
+
+    spectator:
+      enabled: true
+
+  community:
+    enabled: true
+
+    leaderboards:
+      enabled: true
+
+  settings:
+    enabled: true
+
+    lang:
+      enabled: true
+      default: "zh_cn"
+
+    chat:
+      enabled: true
+
+    parkour_settings:
+
+      item:
+        enabled: true
+
+      items:
+
+        styles:
+          enabled: true
+          default: "red"
+
+        leads:
+          enabled: true
+          default: 4
+
+        time:
+          enabled: true
+          default: 6000
+
+        schematics:
+          enabled: true
+          default: 0.6
+
+        scoreboard:
+          enabled: true
+          default: true
+
+        fall_message:
+          enabled: true
+          default: true
+
+        particles:
+          enabled: true
+          default: true
+
+        sound:
+          enabled: true
+          default: true
+
+        special_blocks:
+          enabled: true
+          default: true
+
+  lobby:
+    enabled: true
+
+    visibility:
+      enabled: true
+
+    player_management:
+      enabled: true

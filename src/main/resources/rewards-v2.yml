@@ -1,0 +1,82 @@
+# ========================================
+#        奖励配置 — rewards-v2.yml
+#        无尽跑酷 Infinite Parkour
+#        默认语言：简体中文
+# ========================================
+
+# 每条指令需要单独一行，参考下方示例。
+# 复制下方格式并修改分数/指令即可添加奖励。
+# 奖励指令由控制台执行，请勿添加 "/"！
+# 分数为 0 不生效。
+
+# 自定义奖励语法：
+# %player% - 玩家名称。
+# test %player% - 执行控制台指令，请勿添加 "/"！
+# leave:test - 在退出时执行指令。
+# send:<bold>测试消息 - 发送消息。
+# vault:-87 - 存取指定金额（需要 Vault）
+# default:test - 模式专属奖励。模式名称为 "default" 或 IP+ 配置中的名称。
+#
+# 颜色格式: https://docs.advntr.dev/minimessage/format.html
+
+# -= 启用奖励 =-
+# 是否启用奖励系统？
+enabled: false
+
+# -= 分数奖励 =-
+# 玩家达到特定分数时触发
+# score-rewards:
+#   420:
+#     - "send:干得不错 :)"
+#     - "speed:send:你真是闪电麦昆！"
+
+# -= 间隔奖励 =-
+# 每达到指定间隔时触发
+# 间隔 10 表示玩家在 10, 20, 30... 分时获得奖励
+# interval-rewards:
+#   10:
+#     - "witpreward10"
+#     - "send:<green>做得好！"
+
+# -= 一次性奖励 =-
+# 玩家仅能获得一次的奖励
+# 根据所需分数触发
+# 修改指令不会使已获得奖励的玩家再次获得
+# 注意：一次性奖励只基于分数，可能会导致各模式奖励未发放的问题
+# one-time-rewards:
+#   1:
+#     - "send:你完成了第一次跳跃！"
+#     - "team_survival:send:<gray>记得邀请你的朋友！"
+#     - "duels:send:<gray>祝你好运！"
+#   2023:
+#     - "leave:currentyear"
+#     - "vault:100"
+#   2024:
+#     - "send:<reset>"
+#     - "send:<red><bold>时间旅行是违法的！"
+#     - "send:<reset>"
+#     - "vault:-100"
+
+score-rewards:
+  420:
+    - "send:干得不错 :)"
+    - "speed:send:你真是闪电麦昆！"
+
+interval-rewards:
+  10:
+    - "witpreward10"
+    - "send:<green>做得好！"
+
+one-time-rewards:
+  1:
+    - "send:你完成了第一次跳跃！"
+    - "team_survival:send:<gray>记得邀请你的朋友！"
+    - "duels:send:<gray>祝你好运！"
+  2023:
+    - "leave:currentyear"
+    - "vault:100"
+  2024:
+    - "send:<reset>"
+    - "send:<red><bold>时间旅行是违法的！"
+    - "send:<reset>"
+    - "vault:-100"

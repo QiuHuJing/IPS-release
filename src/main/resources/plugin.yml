@@ -1,0 +1,13 @@
+name: 'IP'
+description: '无限自动生成跑酷插件 | 默认语言：简体中文 | Infinitely automatically generating parkour plugin'
+author: 'Efnilite, Folia适配与汉化: 叶小光'
+version: 5.3.2-Folia
+api-version: '1.21'
+folia-supported: true
+main: dev.efnilite.ip.IP
+softdepend: [floodgate, Vault, PlaceholderAPI, Multiverse-Core, VoidGen]
+commands:
+    witp:
+        aliases: [parkour, ip, 跑酷, paoku]
+        usage: /<command> [参数]
+        description: 无限跑酷主命令 | Main command for Infinite Parkour
