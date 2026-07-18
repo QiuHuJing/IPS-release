@@ -1,0 +1,13 @@
+# 用 Caddy 做反向代理（自动 HTTPS）
+# 下载 Caddy（如果你的服务器已安装，跳过）
+curl -OL https://github.com/caddyserver/caddy/releases/latest/download/caddy_linux_amd64.tar.gz
+tar xzf caddy_linux_amd64.tar.gz
+mv caddy /usr/local/bin/
+#创建/etc/caddy/Caddyfile
+你的域名.com {
+    reverse_proxy localhost:3001
+}
+#BASH
+caddy run --config /etc/caddy/Caddyfile
+#然后前端 API_BASE 改为：
+const API_BASE = 'https://你的域名.com/api/auth';

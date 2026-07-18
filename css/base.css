@@ -1,0 +1,102 @@
+:root {
+    --primary: #007AFF;
+    --secondary: #5856D6;
+}
+
+* {
+    font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", Arial, sans-serif !important;
+}
+
+body {
+    background-image: url('../img/bgh_1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-size: 16px;
+    position: relative;
+    animation: backgroundSlide 30s infinite;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: -1;
+}
+
+@keyframes backgroundSlide {
+    0% { background-image: url('../img/bgh_1.png'); }
+    20% { background-image: url('../img/bgh_2.png'); }
+    40% { background-image: url('../img/bgh_3.png'); }
+    60% { background-image: url('../img/bgh_4.png'); }
+    80% { background-image: url('../img/bgh_5.png'); }
+    100% { background-image: url('../img/bgh_1.png'); }
+}
+
+.bg-white {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* 旧加载圈（保留兼容） */
+.loader-circle {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 全局滚动条 */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #06b6d4, #22d3ee); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, #0ea5e9, #38bdf8); }
+
+/* Font Awesome 修复 */
+.fab, .fa, .fas, .far, .fal { font-family: "Font Awesome 6 Free" !important; font-weight: 900; }
+.fab { font-family: "Font Awesome 6 Brands" !important; }
+.fas { font-family: "Font Awesome 6 Free" !important; font-weight: 900; }
+.far { font-family: "Font Awesome 6 Free" !important; font-weight: 400; }
+
+/* 渐变色文字通用 */
+.bg-clip-text { -webkit-background-clip: text; background-clip: text; }
+
+/* ====== 语言下拉菜单 ====== */
+.lang-dropdown { position: relative; display: inline-flex; }
+.lang-current {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.lang-current span:first-child { font-size: 1rem; line-height: 1; }
+.lang-current span:last-child { font-size: 0.75rem; font-weight: 600; }
+.lang-dropdown-menu {
+    position: absolute; top: calc(100% + 6px); right: 0;
+    min-width: 170px; background: #fff;
+    border: 1px solid #e5e7eb; border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    opacity: 0; visibility: hidden; transform: translateY(-6px);
+    transition: all 0.2s ease; z-index: 100; overflow: hidden;
+}
+.lang-dropdown-menu.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.lang-dropdown-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 16px; color: #4b5563;
+    font-size: 0.85rem; text-decoration: none;
+    transition: all 0.15s ease; cursor: pointer;
+}
+.lang-dropdown-item:hover { background: rgba(6,182,212,0.08); color: #06b6d4; }
+.lang-dropdown-item.active { background: rgba(6,182,212,0.12); color: #06b6d4; font-weight: 600; }
+.lang-dropdown-item + .lang-dropdown-item { border-top: 1px solid #e5e7eb; }

@@ -1,0 +1,33 @@
+# 1. 上传 server.js 和 package.json 到服务器
+mkdir -p /opt/auth-api && cd /opt/auth-api
+
+# 2. 安装依赖
+npm install
+
+# 3. 修改 server.js 里的数据库密码和允许的域名
+
+# 4. 测试启动（前台）
+node server.js
+
+# 5. 测试 API（在服务器本地）
+curl http://127.0.0.1:3001/api/auth/health
+# 应该返回: {"status":"ok","db":"connected",...}
+
+# 6. 用真实 AuthMe 账户测试登录
+curl -X POST http://127.0.0.1:3001/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"你的游戏名","password":"你的密码"}'
+
+#额外
+#PM2运行后端
+npm install -g pm2
+pm2 start server.js --name 4u4n-auth
+pm2 save
+pm2 startup   # 开机自启
+
+# 如果服务器开了防火墙
+firewall-cmd --add-port=3001/tcp --permanent
+firewall-cmd --reload
+
+# 或在云服务商安全组中放行 3001 端口
+

@@ -1,0 +1,178 @@
+/* ====== 导航 ====== */
+.glass-nav {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 50 !important;
+}
+
+.nav-link {
+    color: #374151;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+    background-color: rgba(0, 122, 255, 0.06);
+}
+
+/* ====== 英雄按钮 ====== */
+.hero-btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    color: white;
+    background: linear-gradient(to right, #06b6d4, #14b8a6);
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    white-space: nowrap;
+}
+.hero-btn:hover {
+    background: linear-gradient(to right, #0891b2, #0d9488);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+.hero-btn:active { transform: scale(0.95); }
+
+/* ====== 特色卡片 ====== */
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+/* ====== 图片悬停放大 ====== */
+.hover-zoom { overflow: hidden; }
+.hover-zoom img {
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hover-zoom:hover img { transform: scale(1.08); }
+
+/* ====== 团队卡片 ====== */
+.team-card {
+    transition: all 0.3s ease;
+}
+.team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+/* ====== 优势卡片 ====== */
+.advantage-card {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+.advantage-card:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+/* ====== FAQ 折叠面板 ====== */
+.faq-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+.faq-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+
+.faq-question {
+    padding: 1.25rem;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: background-color 0.2s;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+.faq-question:hover { background-color: rgba(0,0,0,0.02); }
+.faq-question::-webkit-details-marker { display: none; }
+
+.faq-question::before {
+    content: '\f107';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 0.75rem;
+    color: var(--primary);
+    transition: transform 0.3s;
+    font-size: 0.875rem;
+}
+
+details[open] .faq-question::before { transform: rotate(180deg); }
+
+.faq-answer {
+    padding: 0 1.25rem 1.25rem;
+    color: #4b5563;
+}
+
+/* ====== 指令项 ====== */
+.cmd-item {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+}
+.cmd-item:hover { background-color: #f9fafb; }
+
+/* ====== Toast 通知 ====== */
+#command-toast {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #10b981;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+#command-toast.show { opacity: 1; visibility: visible; }
+
+/* ====== 按钮通用 ====== */
+.copy-btn {
+    padding: 0.5rem 1rem;
+    background: linear-gradient(to right, #06b6d4, #14b8a6);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+.copy-btn:hover { opacity: 0.9; }
+.copy-btn:active { transform: scale(0.95); }
+
+/* ====== 回到顶部 ====== */
+#backToTop {
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
